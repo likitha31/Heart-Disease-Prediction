@@ -1,109 +1,31 @@
-# Custom Object Detection with YOLO
+# Heart Disease Prediction
 
-## Introduction
-This project focuses on creating a **custom object detection model** using the YOLOv5 architecture. We selected strawberries as our object of interest, built and labeled a dataset, trained the model, and evaluated its performance. The goal was to gain hands-on experience in **data collection**, **model training**, and **performance evaluation**.
+A machine learning project to predict heart disease using clinical data from the UCI Heart Disease dataset. Built and evaluated multiple models, with a focus on balancing accuracy and recall for early detection.
 
-## Object Selection
-During the initial phase, we selected **strawberries** as the detection target due to their visually complex features, which present a challenging and meaningful task for computer vision models.
+## 📊 Key Highlights
+- Cleaned and explored 296 patient records with 14 features
+- Identified key predictors like chest pain type, ST slope, and major vessels
+- Tested 12+ models including Logistic Regression, Random Forest, and XGBoost
+- **Final Model**: LightGBM with 86% accuracy and 94% recall
+- Used **SHAP** for explainability to identify top contributing features
 
-## Data Collection and Preparation
-**Data Collection**:
-- 55 images were captured using an iPhone (.heic format).
-- Images were taken under varied lighting and environmental conditions to promote model generalizability.
+## ⚙️ Tools & Libraries
+Python, Pandas, Scikit-learn, LightGBM, SHAP, Matplotlib, Seaborn
 
-**Labeling**:
-- Annotation was done using **makesense.ai**.
-- Bounding boxes were labeled in **YOLO format**:
-  - `class_id, x_center, y_center, width, height`
-- Dataset was split strategically:
-  - **Training Set**: 38 images (70%)
-  - **Validation Set**: 11 images (20%)
-  - **Testing Set**: 6 images (10%)
+## 📁 Project Structure
+- `notebooks/` – EDA and modeling notebooks
+- `data/` – Cleaned dataset
+- `visuals/` – Plots and SHAP summaries
+- `README.md` – This file
 
-## Model Configuration and Training
-- **Model**: YOLOv5s
-- **Input Image Size**: 416x416 pixels
-- **Training Epochs**: 50
-- **Batch Size**: 16
-- **Confidence Threshold**: 0.5
+## 🔍 Try It Yourself
+1. Clone the repo  
+2. Install dependencies: `pip install -r requirements.txt`  
+3. Run the notebook in `notebooks/` to explore the data and models
 
-## Performance Evaluation
-
-### Training Set Results
-| Metric            | Value |
-|-------------------|-------|
-| Precision         | 0.903 |
-| Recall            | 0.955 |
-| mAP@0.5           | 0.972 |
-| mAP@0.5:0.95      | 0.681 |
-
-### Validation Set Results
-| Metric            | Value |
-|-------------------|-------|
-| Precision         | 1.000 |
-| Recall            | 0.955 |
-| mAP@0.5           | 0.977 |
-| mAP@0.5:0.95      | 0.715 |
-
-### Key Observations
-- **Perfect precision (1.000)** on the validation set.
-- **Consistently high recall (0.955)** across both training and validation.
-- Strong generalization despite a relatively small dataset.
-
-### Computational Efficiency
-| Metric                       | Time per Image |
-|-------------------------------|----------------|
-| Preprocessing Time            | 0.1 ms         |
-| Inference Time                | 3.5 ms         |
-| Non-Maximum Suppression (NMS) | 3.4 ms         |
-
-## Conclusion
-We successfully developed a high-performing custom object detection model using YOLOv5s. The project covered all key phases:
-- Careful **object selection**
-- Strategic **data collection**
-- Precise **annotation**
-- **Model training** with strong hyperparameter tuning
-- Thorough **performance evaluation**
-
-The model demonstrated **high accuracy** and **efficiency**, highlighting the potential of deep learning for custom object detection tasks.
+## 📎 Dataset
+[UCI Heart Disease Dataset](https://archive.ics.uci.edu/ml/datasets/heart+Disease)
 
 ---
 
-### Team
-- [Your Team Member Names]
-
-### Tools Used
-- Python
-- YOLOv5
-- makesense.ai
-- GeoPandas, OpenCV
-- PyTorch
-
-### Repo Structure
-```
-|- dataset/
-|    |- images/
-|    |- labels/
-|- yolov5s_model/
-|- README.md
-|- train.py
-|- detect.py
-|- results/
-```
-
-### How to Run
-1. Clone the repository.
-2. Install dependencies listed in `requirements.txt`.
-3. Place the dataset in the appropriate folder.
-4. Train the model:
-   ```bash
-   python train.py --img 416 --batch 16 --epochs 50 --data dataset.yaml --cfg yolov5s.yaml
-   ```
-5. Run detection on new images:
-   ```bash
-   python detect.py --weights best.pt --img 416 --source your_image_folder/
-   ```
-
----
-
-Feel free to fork this repo, experiment with different objects, or scale it up for real-world detection tasks!
+*This project was completed as part of a graduate course at George Washington University.*
